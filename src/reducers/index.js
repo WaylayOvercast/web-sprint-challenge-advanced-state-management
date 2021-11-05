@@ -1,9 +1,55 @@
+import { act } from "react-dom/test-utils";
+import { FETCH_START, FETCH_COMPLETE, FETCH_ERR,
+START_POST, POST_COMPLETE, POST_ERR} from "../actions";
 
-export const initialState = {
-}
 
-const reducer = ()=>{
-}
+
+const initialState = {
+    
+    smurfs:[],
+    isLoad: false,
+    error:''
+};
+
+
+
+export const reducer = ( state = initialState, action ) => {
+    switch(action.type){
+     case(FETCH_START):
+        return({
+          ...state,
+          isLoad: true,
+        });
+     case(FETCH_COMPLETE):
+        return({
+          ...state,
+          smurfs:  action.payload.smurfs,
+          isLoad: false,
+        });
+     case(FETCH_ERR):
+        return({
+          ...state,
+          isLoad: false,
+          error: action.payload
+        });
+     case(START_POST):
+        return({
+          ...state,
+        });
+     case(POST_COMPLETE):
+        return({
+          ...state,
+          smurfs: action.payload,
+        });
+     case(POST_ERR):
+        return({
+          ...state,
+          error: action.payload
+        });
+      default:
+        return state;
+    }
+};
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
 export default reducer;

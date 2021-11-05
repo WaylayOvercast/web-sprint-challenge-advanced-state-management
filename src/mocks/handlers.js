@@ -29,7 +29,7 @@ export const handlers = [
     rest.get('http://localhost:3333/smurfs', (req, res, ctx) => {
       return res(
         ctx.status(200),
-        ctx.json(smurfs)
+        ctx.json({smurfs, message:"complete"})
       )
     }),
 
